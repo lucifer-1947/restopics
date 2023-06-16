@@ -5,20 +5,16 @@ const testimonials = [
     {
       content:
         "Just had early access to this and it's *ridic*. Powered by @vercel x @replicatehq – also very fast.",
-      link: "https://twitter.com/rauchg/status/1612233034622984192",
       author: {
         name: "Guillermo Rauch",
-        role: "CEO at Vercel",
         image: "/g.jpg",
       },
     },
     {
       content:
         "This is amazing! And in the 🧵 you can see the whole open-source stack instantly deployable to Vercel",
-      link: "https://twitter.com/cramforce/status/1612496954218672128",
       author: {
         name: "Malte Ubl",
-        role: "CTO at Vercel",
         image: "/malte.jpg",
       },
     },
@@ -27,10 +23,8 @@ const testimonials = [
     {
       content:
         "I just used it and am extremely impressed with the website and wanted to express my appreciation for the excellent design and functionality. Keep up the great work!",
-      link: "https://twitter.com/phar_whaz/status/1612498030627852309",
       author: {
         name: "Fawaz Adeniji",
-        role: "Software Engineer",
         image: "/fawaz.jpg",
       },
     },
@@ -49,20 +43,16 @@ const testimonials = [
     {
       content:
         "I've just used it and damn I'll keep coming back! This is so good. Great work!",
-      link: "https://twitter.com/Himanil_Gole/status/1612510385504157697",
       author: {
         name: "Himanil Gole",
-        role: "Designer & Founder at CBREX",
         image: "/himanil.jpg",
       },
     },
     {
       content:
         "Wow, thank you! Tried a few and love it! My small example (pic of father from 70s original on right), really cleaned it up!",
-      link: "https://twitter.com/rod_ellison/status/1612513333302775809",
       author: {
         name: "Rod Ellison",
-        role: "Software Engineer",
         image: "/rod.jpg",
       },
     },
@@ -97,7 +87,6 @@ export function Testimonials() {
                     key={testimonialIndex}
                     className="hover:scale-105 transition duration-300 ease-in-out"
                   >
-                    <a href={testimonial.link} target="_blank" rel="noreferrer">
                       <figure className="relative rounded-2xl bg-white p-6 shadow-xl shadow-slate-900/10">
                         <blockquote className="relative">
                           <p className="text-lg tracking-tight text-slate-900">
@@ -124,7 +113,6 @@ export function Testimonials() {
                           </div>
                         </figcaption>
                       </figure>
-                    </a>
                   </li>
                 ))}
               </ul>
