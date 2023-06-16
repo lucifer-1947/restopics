@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Restopics</title>
+        <title>RestoPics</title>
       </Head>
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-28 mt-20">
@@ -26,7 +26,7 @@ const Home: NextPage = () => {
         </a>
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-slate-900 sm:text-7xl">
           Restore you old pics{" "}
-          <span className="relative whitespace-nowrap text-[#3290EE]">
+          <span className="relative whitespace-nowrap text-[#ee1c4e]">
             <SquigglyLines />
             <span className="relative">using AI</span>
           </span>{" "}
