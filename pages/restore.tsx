@@ -34,8 +34,8 @@ const Home: NextPage = () => {
   const [photoName, setPhotoName] = useState<string | null>(null);
 
   const fetcher = (url: string) => fetch(url).then((res) => res.json());
-  const { data, mutate } = useSWR("/api/remaining", fetcher);
-  const { data: session, status } = useSession();
+  // const { data, mutate } = useSWR("/api/remaining", fetcher);
+  // const { data: session, status } = useSession();
 
   const options = {
     maxFileCount: 1,
@@ -53,9 +53,9 @@ const Home: NextPage = () => {
       if (!isSafe) {
         return "Detected a NSFW image which is not allowed.";
       }
-      if (data.remainingGenerations === 0) {
-        return "No more generations left for the day.";
-      }
+      // if (data.remainingGenerations === 0) {
+      //   return "No more generations left for the day.";
+      // }
       return undefined;
     },
   };
@@ -92,7 +92,7 @@ const Home: NextPage = () => {
     if (res.status !== 200) {
       setError(newPhoto);
     } else {
-      mutate();
+      // mutate();
       setRestoredImage(newPhoto);
     }
     setLoading(false);
@@ -105,7 +105,7 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Header photo={session?.user?.image || undefined} />
+      <Header photo={undefined} />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 mt-4 sm:mb-0 mb-8">
         <a
           href="https://twitter.com/nutlope/status/1626074563481051136"
@@ -119,19 +119,7 @@ const Home: NextPage = () => {
         <h1 className="mx-auto max-w-4xl font-display text-4xl font-bold tracking-normal text-slate-900 sm:text-6xl mb-5">
           Restore any face photo
         </h1>
-        {status === "authenticated" && data && (
-          <p className="text-slate-500">
-            You have{" "}
-            <span className="font-semibold">
-              {data.remainingGenerations} generations
-            </span>{" "}
-            left today. Your generation
-            {Number(data.remainingGenerations) > 1 ? "s" : ""} will renew in{" "}
-            <span className="font-semibold">
-              {data.hours} hours and {data.minutes} minutes.
-            </span>
-          </p>
-        )}
+    
         <div className="flex justify-between items-center w-full flex-col mt-4">
           <Toggle
             className={`${restoredLoaded ? "visible mb-6" : "invisible"}`}
@@ -144,20 +132,23 @@ const Home: NextPage = () => {
               restored={restoredImage!}
             />
           )}
-          {status === "loading" ? (
-            <div className="max-w-[670px] h-[250px] flex justify-center items-center">
-              <Rings
-                height="100"
-                width="100"
-                color="black"
-                radius="6"
-                wrapperStyle={{}}
-                wrapperClass=""
-                visible={true}
-                ariaLabel="rings-loading"
-              />
-            </div>
-          ) : status === "authenticated" && !originalPhoto ? (
+          {
+          // status === "loading" ? (
+          //   <div className="max-w-[670px] h-[250px] flex justify-center items-center">
+          //     <Rings
+          //       height="100"
+          //       width="100"
+          //       color="black"
+          //       radius="6"
+          //       wrapperStyle={{}}
+          //       wrapperClass=""
+          //       visible={true}
+          //       ariaLabel="rings-loading"
+          //     />
+          //   </div>
+          // ) : 
+          
+          !originalPhoto ? (
             <UploadDropZone />
           ) : (
             !originalPhoto && (

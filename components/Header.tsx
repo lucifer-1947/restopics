@@ -13,10 +13,10 @@ export default function Header({ photo }: { photo?: string | undefined }) {
           height={25}
         />
         <h1 className="sm:text-4xl text-2xl font-bold ml-2 tracking-tight">
-          restorePhotos.io
+          Restopics
         </h1>
       </Link>
-      {photo ? (
+      {/* {photo ? (
         <Image
           alt="Profile picture"
           src={photo}
@@ -38,7 +38,7 @@ export default function Header({ photo }: { photo?: string | undefined }) {
             height={28}
           />
         </a>
-      )}
+      )} */}
     </header>
   );
 }

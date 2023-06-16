@@ -11,7 +11,7 @@ const Home: NextPage = () => {
   return (
     <div className="flex max-w-6xl mx-auto flex-col items-center justify-center py-2 min-h-screen">
       <Head>
-        <title>Face Photo Restorer</title>
+        <title>Restopics</title>
       </Head>
       <Header />
       <main className="flex flex-1 w-full flex-col items-center justify-center text-center px-4 sm:mt-28 mt-20">
@@ -25,12 +25,11 @@ const Home: NextPage = () => {
           users
         </a>
         <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-normal text-slate-900 sm:text-7xl">
-          Restoring old photos{" "}
+          Restore you old pics{" "}
           <span className="relative whitespace-nowrap text-[#3290EE]">
             <SquigglyLines />
             <span className="relative">using AI</span>
           </span>{" "}
-          for everyone.
         </h1>
 
         <p className="mx-auto mt-12 max-w-xl text-lg text-slate-700 leading-7">
@@ -38,14 +37,14 @@ const Home: NextPage = () => {
           memories can live on. 100% free – restore your photos today.
         </p>
         <div className="flex justify-center space-x-4">
-          <a
+          {/* <a
             className="bg-white rounded-xl text-black font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-gray-100 border"
             href="https://youtu.be/FRQtFDDrUXQ"
             target="_blank"
             rel="noreferrer"
           >
             Learn how it's built
-          </a>
+          </a> */}
 
           <Link
             className="bg-black rounded-xl text-white font-medium px-4 py-3 sm:mt-10 mt-8 hover:bg-black/80"

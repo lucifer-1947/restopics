@@ -11,55 +11,58 @@ interface ExtendedNextApiRequest extends NextApiRequest {
   };
 }
 
-// Create a new ratelimiter, that allows 5 requests per day
-const ratelimit = redis
-  ? new Ratelimit({
-      redis: redis,
-      limiter: Ratelimit.fixedWindow(5, "1440 m"),
-      analytics: true,
-    })
-  : undefined;
+// // Create a new ratelimiter, that allows 5 requests per day
+// const ratelimit = redis
+//   ? new Ratelimit({
+//       redis: redis,
+//       limiter: Ratelimit.fixedWindow(5, "1440 m"),
+//       analytics: true,
+//     })
+//   : undefined;
 
 export default async function handler(
   req: ExtendedNextApiRequest,
   res: NextApiResponse<Data>
 ) {
+
+
   // Check if user is logged in
-  const session = await getServerSession(req, res, authOptions);
-  if (!session || !session.user) {
-    return res.status(500).json("Login to upload.");
-  }
+  // const session = await getServerSession(req, res, authOptions);
+  // if (!session || !session.user) {
+  //   return res.status(500).json("Login to upload.");
+  // }
 
   // Rate Limiting by user email
-  if (ratelimit) {
-    const identifier = session.user.email;
-    const result = await ratelimit.limit(identifier!);
-    res.setHeader("X-RateLimit-Limit", result.limit);
-    res.setHeader("X-RateLimit-Remaining", result.remaining);
+  // if (ratelimit) {
+  //   const identifier = session.user.email;
+  //   const result = await ratelimit.limit(identifier!);
+  //   res.setHeader("X-RateLimit-Limit", result.limit);
+  //   res.setHeader("X-RateLimit-Remaining", result.remaining);
 
-    // Calcualte the remaining time until generations are reset
-    const diff = Math.abs(
-      new Date(result.reset).getTime() - new Date().getTime()
-    );
-    const hours = Math.floor(diff / 1000 / 60 / 60);
-    const minutes = Math.floor(diff / 1000 / 60) - hours * 60;
+  //   // Calcualte the remaining time until generations are reset
+  //   const diff = Math.abs(
+  //     new Date(result.reset).getTime() - new Date().getTime()
+  //   );
+  //   const hours = Math.floor(diff / 1000 / 60 / 60);
+  //   const minutes = Math.floor(diff / 1000 / 60) - hours * 60;
 
-    if (!result.success) {
-      return res
-        .status(429)
-        .json(
-          `Your generations will renew in ${hours} hours and ${minutes} minutes. Email hassan@hey.com if you have any questions.`
-        );
-    }
-  }
+  //   if (!result.success) {
+  //     return res
+  //       .status(429)
+  //       .json(
+  //         `Your generations will renew in ${hours} hours and ${minutes} minutes. Email hassan@hey.com if you have any questions.`
+  //       );
+  //   }
+  // }
 
   const imageUrl = req.body.imageUrl;
+
   // POST request to Replicate to start the image restoration generation process
   let startResponse = await fetch("https://api.replicate.com/v1/predictions", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Token " + process.env.REPLICATE_API_KEY,
+      Authorization: "Token " + "r8_ZF8ciuRmCgaJIyInSIGn1V8MgDjJCww2SVWGt",
     },
     body: JSON.stringify({
       version:
@@ -80,7 +83,7 @@ export default async function handler(
       method: "GET",
       headers: {
         "Content-Type": "application/json",
-        Authorization: "Token " + process.env.REPLICATE_API_KEY,
+        Authorization: "Token " + "r8_ZF8ciuRmCgaJIyInSIGn1V8MgDjJCww2SVWGt",
       },
     });
     let jsonFinalResponse = await finalResponse.json();
